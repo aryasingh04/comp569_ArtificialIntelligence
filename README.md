@@ -1,0 +1,2 @@
+# comp569_ArtificialIntelligence
+Sustainable Agriculture and Resource Management
