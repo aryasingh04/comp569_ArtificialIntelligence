@@ -1,164 +1,222 @@
-# comp569_ArtificialIntelligence
-Sustainable Agriculture and Resource Management
-# Sustainable Agriculture AI (MDP + Reinforcement Learning)
+# 🌱 Sustainable Agriculture AI (MDP + Reinforcement Learning)
 
 ## 📌 Project Overview
 
-This project implements an AI system for **Sustainable Agriculture and Resource Management** using:
+This project builds an AI system for **Sustainable Agriculture and Resource Management** using:
 
 * Markov Decision Processes (MDPs)
 * Value Iteration
 * Policy Iteration
 * Q-Learning (Reinforcement Learning)
 
-The goal is to optimize long-term farming decisions such as irrigation, fertilization, harvesting, and conservation under uncertainty.
+The goal is to optimize long-term decisions such as **irrigation, fertilization, harvesting, and conservation** under uncertainty.
 
 ---
 
-## 🧠 Problem Description
+## 🔍 System Overview
 
-Agricultural systems involve uncertainty in:
+### Agricultural Dynamics + MDP Loop
 
-* Weather conditions
-* Soil moisture
-* Crop growth
-* Resource availability
+![System Overview](images/system_overview.png)
 
-This project models agriculture as a **108-state Markov Decision Process** to compute optimal decision-making policies.
+This diagram shows how the agent observes environmental state (soil moisture, nutrients, crop stage), selects actions, and receives rewards to improve decisions over time.
 
 ---
 
-## ⚙️ Technologies
+## 🧠 Problem Formulation
 
-* Python
-* NumPy
-* Pandas
-* Matplotlib
-* Seaborn
-* Jupyter Notebook
-
----
-
-## 📂 Project Structure
-
-```id="7zq8n4"
-project_3_SARM.ipynb   # Full implementation (MDP + RL + experiments)
-README.md              # Documentation
-```
-
----
-
-## 🚀 How to Run
-
-### 1. Clone Repository
-
-```id="g7nq2x"
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-```
-
-### 2. Install Dependencies
-
-```id="c5y0tw"
-pip install numpy pandas matplotlib seaborn
-```
-
-### 3. Run Notebook
-
-```id="5h7m2a"
-jupyter notebook project_3_SARM.ipynb
-```
-
----
-
-## ▶️ Implementation Details
-
-### State Space
-
-* 108 total states
-* Variables:
+* **State Space (108 states)**:
 
   * Soil moisture (Dry, Moderate, Wet)
-  * Crop stage (4 stages)
+  * Crop stage (Seedling → Mature)
   * Nutrient level (3 levels)
   * Water availability (3 levels)
 
-### Actions
+* **Actions**:
 
-* Irrigate
-* Fertilize
-* Harvest
-* Conserve
+  * Irrigate, Fertilize, Harvest, Conserve
+
+* **Objective**:
+  Maximize long-term reward balancing productivity and sustainability.
 
 ---
 
 ## 🤖 Algorithms Implemented
 
-### 1. Value Iteration
+### Value Iteration & Policy Iteration
 
-* Converged in **205 iterations**
-* Final Bellman error: **0.000953**
-* Mean state value: **641.36**
+* Exact MDP solution using Bellman optimality
+* Policy Iteration converges faster
 
-### 2. Policy Iteration
+### Q-Learning
 
-* Converged in **7 iterations**
-* 100% policy agreement with Value Iteration
-
-### 3. Q-Learning
-
-* Trained for **5000 episodes**
-* Final reward (last 100 episodes): **~129**
-* Policy agreement with optimal: **36.1%**
+* Model-free learning from experience
+* Uses ε-greedy exploration
+* Trained for 5000 episodes
 
 ---
 
-## 📊 Results Summary
+## 📊 Algorithm Performance
 
-### Policy Evaluation (100 Episodes)
+### Performance Comparison
 
-| Algorithm        | Mean Reward | Success Rate |
-| ---------------- | ----------- | ------------ |
-| Value Iteration  | 145.04      | 100%         |
-| Policy Iteration | 145.07      | 100%         |
-| Q-Learning       | 141.86      | 100%         |
+![Performance](images/policy_performance_comparison.png)
 
----
-
-## 📈 Key Insights
-
-* Value Iteration and Policy Iteration produce identical optimal policies
-* Policy Iteration converges much faster
-* Q-Learning learns effective behavior but does not fully match optimal policy
-* Decay-based exploration strategies improve reinforcement learning performance
-* Reward design strongly influences system behavior
+* Value Iteration and Policy Iteration achieve optimal performance
+* Q-Learning performs slightly lower but still strong
 
 ---
 
-## 🧪 Experiments Conducted
+### Policy Comparison Across Algorithms
 
-* Discount factor (γ) analysis
-* Learning rate (α) tuning
-* Exploration strategies (fixed vs decay)
-* Reward function (harvest reward) analysis
+![Policies](images/policy_comparison_heatmaps.png)
+
+* Value & Policy Iteration produce identical policies
+* Q-Learning differs in some states due to limited exploration
 
 ---
 
-## 🔍 Example Behavior
+### Action Distribution
 
-* Dry soil → Irrigate
-* Low nutrients → Fertilize
-* Mature crops → Harvest
-* Adequate conditions → Conserve
+![Actions](images/action_distribution.png)
+
+* Optimal policies are balanced
+* Q-Learning shows bias toward irrigation
+
+---
+
+## 📈 Learning Behavior (Reinforcement Learning)
+
+### Q-Learning Training Dynamics
+
+![Q Learning](images/q_learning_dashboard.png)
+
+* Reward improves over episodes
+* TD error decreases → learning stabilizes
+* Episode length stabilizes → consistent behavior
+
+---
+
+## 📉 Convergence Analysis
+
+### Bellman Convergence Proof
+
+![Convergence](images/value_iteration_convergence.png)
+
+* Value Iteration converges in **205 iterations**
+* Bellman error → near zero
+* Confirms theoretical correctness
+
+---
+
+### Convergence Comparison
+
+![Comparison](images/convergence_comparison.png)
+
+* Policy Iteration converges faster than Value Iteration
+
+---
+
+## ⚙️ Parameter Analysis
+
+### Full Parameter Tuning Dashboard
+
+![Tuning](images/parameter_tuning_dashboard.png)
+
+Covers:
+
+* Discount factor (γ)
+* Learning rate (α)
+* Exploration strategies
+* Reward sensitivity
+* Efficiency comparison
+
+---
+
+### Exploration Strategy Analysis
+
+![Exploration](images/exploration_analysis.png)
+
+* Decay-based strategies perform best
+* Statistical tests validate improvements
+
+---
+
+### Learning Rate Impact
+
+![Alpha](images/learning_rate_analysis.png)
+
+* Higher learning rates improve convergence speed
+* Optimal α ≈ 0.5
+
+---
+
+### Discount Factor Impact
+
+![Gamma](images/discount_factor_analysis.png)
+
+* Higher γ improves long-term planning
+* Trade-off: slower convergence
+
+---
+
+### Reward Sensitivity
+
+![Reward](images/reward_sensitivity.png)
+
+* Higher harvest reward increases total returns
+* Demonstrates importance of reward design
+
+---
+
+## 📈 Key Results
+
+| Algorithm        | Mean Reward | Notes                  |
+| ---------------- | ----------- | ---------------------- |
+| Value Iteration  | ~145        | Optimal                |
+| Policy Iteration | ~145        | Faster convergence     |
+| Q-Learning       | ~141        | Learns from experience |
+
+---
+
+## 🧠 Key Insights
+
+* Model-based methods achieve **optimal policies**
+* Q-Learning learns strong but approximate policies
+* Exploration strategy significantly impacts learning
+* Reward design strongly influences behavior
+* MDPs effectively model long-term decision-making
+
+---
+
+## 🚀 How to Run
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+pip install -r requirements.txt
+jupyter notebook project_3_SARM.ipynb
+```
+
+---
+
+## 📂 Project Structure
+
+```
+project_3_SARM.ipynb
+README.md
+requirements.txt
+images/
+```
 
 ---
 
 ## 🔮 Future Work
 
-* Use real-world agricultural data
-* Expand state space
+* Use real-world agricultural datasets
+* Extend to continuous state spaces
 * Apply Deep Reinforcement Learning (DQN)
-* Incorporate weather prediction models
+* Integrate weather prediction
 
 ---
 
