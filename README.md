@@ -164,7 +164,7 @@ jupyter notebook project_3_SARM.ipynb
 
 ## 👤 Author
 
-[Arya Singh]
+Arya Singh
 
 ---
 
